@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+
+        html{
+            scroll-behavior: smooth;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+
+        :root{
+            --cream:#f7f3ee;
+            --beige: #e8ddd1;
+            --sand: #c9b99a;
+            --brown: #7c5c3e;
+            --dark: #2c1f14;
+            --text: #4a3728;
+            --light: #fdfaf7;
+        }
+
+        body{
+        font-family:'Poppins',sans-serif;
+        overflow-x: hidden;
+        background-color:var(--cream);
+        color:var(--dark);
+
+        }
+
+        .nav-logo{
+            margin-left:0.8rem;
+            color:var(--brown);
+            text-decoration: none;
+            font-size:20px;
+        }
+
+        nav{
+            background-color: var(--light);
+            position:sticky;
+            top:0;
+            z-index:999;
+            display:flex;
+            flex-direction:row;
+            justify-content: space-between;
+            align-items:center;
+            padding:0.3rem;
+        }
+
+        .nav-links {
+            display:flex;
+            list-style:none;
+            justify-content: space-between;
+            padding:0.3rem;
+            gap:4rem;
+            margin-right:8rem;
+        }
+
+        .nav-links a{
+            text-decoration: none;
+            color:var(--dark);
+            transition:0.3s;
+        }
+
+        .nav-links a:hover{
+            color:var(--brown);
+            transform:translateY(-3px);
+        }
+
+        #hero{
+            display:flex;
+            min-height:70vh;
+            padding: 6rem 5rem 3rem;
+            justify-content:space-between;
+            align-items:center;
+            
+        }
+
+        .hero-illustration svg {
+            max-width: 650px;
+            width: 100%;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-illustration {
+           flex: 1;
+           display: flex;
+           justify-content: center;
+           align-items:center;
+        }
+
+        @keyframes rotate-ring {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .ring-animate {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: rotate-ring 8s linear infinite;
+        }
+
+        .ring-slow {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: rotate-ring 14s linear infinite reverse;
+        }
+
+        .hero-name{
+            color:rgb(252, 97, 7);
+            letter-spacing:0.12rem;
+            font-style:italic;
+            opacity:0.8;
+            line-height:1.1;
+            padding:1rem;
+            font-size:5rem;
+            font-weight:700;
+            font-family:'poppins';
+        }
+
+        .hero-eyebrow{
+            font-family:'fantasy';
+            font-size:18px;
+            letter-spacing:0.1rem;
+            font-style:italic;
+            color:var(--brown);
+        }
+
+        .hero-tagline{
+            max-width:550px;
+            padding:0.8rem;
+            color:var(--brown);
+            font-size:18px;
+        }
+
+        .hero-actions{
+            display:flex;
+            gap:1rem;
+            margin-top:1.5rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background-color: var(--brown);
+            color: var(--light);
+        }
+        .btn-primary:hover {
+            background-color: var(--dark);
+        }
+        .btn-outline {
+            border: 1.5px solid var(--brown);
+            color: var(--brown);
+        }
+        .btn-outline:hover {
+            background-color: var(--brown);
+            color: var(--light);
+        }
+        
+        #about {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            padding: 6rem 5rem;
+            overflow: hidden;
+        }
+
+        .about-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position:center 20%;
+            z-index: 0;
+        }
+
+        #about::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .about-para {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.85);
+            max-width: 550px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            max-width: 400px;
+        }
+
+        .stat-box {
+            padding: 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .stat-box h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.75);
+            margin-top: 0.3rem;
+        }
+
+        #skills{
+            min-height:80vh;
+            padding:3rem 5rem;
+            background-color: var(--beige);
+            color:var(--text);
+        }
+        
+        .section-label {
+            color:rgb(255, 115, 0);
+            margin-left:0;
+            font-family:'poppins';
+            padding:0.2rem;
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .section-title{
+            margin-top:2em;
+            word-spacing: 0.1em;
+            padding:0.2rem;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+        } 
+
+        .skills-grid {
+            gap:1.1rem;
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(250px, 1fr));
+            padding:1rem;
+            font-size:17px;
+        }
+        .skill-tag{
+            text-align: center;
+            background-color: transparent;
+            height: 70px;
+            border: 1px solid var(--dark);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+
+        .skill-tag:hover {
+            transform:translateY(-2px);
+            background-color: var(--cream);
+            color: var(--browm);
+            cursor: pointer;
+        }
+
+        #projects{
+            background-color:var(--beige);
+            min-height:100vh;
+            padding:2rem;
+        }
+
+        .section-label-pr{
+            color:rgb(255, 115, 0);
+            margin-left:2rem;
+            font-family:'poppins';
+            padding:0.2rem;
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .main-heading{
+            font-size:25px;
+            font-family:'poppins';
+            padding:1.5rem;
+            display:flex;
+            justify-content:center;
+
+        }
+
+        .project-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: 0.4s;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-grid:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            transition:2s;
+        }
+
+
+        .source-link {
+            text-decoration: none;
+            color: var(--brown);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: auto; 
+        }
+
+        .source-link:hover {
+            color: var(--dark);
+        }
+
+        .project-type {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--brown);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+       #contact {
+            padding: 5rem;
+            text-align: center;
+            background-color: var(--cream);
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .c-text {
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--brown);
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email:hover {
+            color: var(--dark);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--dark);
+            color: var(--light);
+            font-size: 0.85rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#hero" class="nav-logo">Prince<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="hero">
+        <div class="hero-content">
+        <div class="hero-eyebrow"><em>Full-Stack Developer </em></div>
+        <h1 class="hero-name"><em>Prince<br>Pandey</em></h1>
+        <p class="hero-tagline">building clean,functional web experiences - from frontends to full-stack systems. currently studying Engineering at MMIT Pune.</p>
+        <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://github.com/Prince0917" target="_blank" class="btn btn-outline">GitHub</a>
+        </div>
+        </div>
+        <div class="hero-illustration">
+        <svg width="100%" viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- OUTER RING only — dot removed from group -->
+    <g class="ring-animate">
+        <circle cx="400" cy="260" r="200" fill="none" stroke="#c9b99a" stroke-width="1" stroke-dasharray="20 10"/>
+    </g>
+
+    <!-- MIDDLE RING only -->
+    <g class="ring-slow">
+        <circle cx="400" cy="260" r="150" fill="none" stroke="#e8ddd1" stroke-width="1" stroke-dasharray="15 8"/>
+    </g>
+
+    <!-- INNER RING only -->
+    <g class="ring-animate">
+        <circle cx="400" cy="260" r="100" fill="none" stroke="#c9b99a" stroke-width="1.5" stroke-dasharray="10 6"/>
+    </g>
+
+    <!-- CENTER — no animation -->
+    <circle cx="400" cy="260" r="55" fill="#7c5c3e" opacity="0.12"/>
+    <circle cx="400" cy="260" r="35" fill="#7c5c3e" opacity="0.18"/>
+    <text x="400" y="272" text-anchor="middle" font-family="monospace" font-size="28" font-weight="700" fill="#7c5c3e" opacity="0.85">&lt;/&gt;</text>
+
+    <!-- STATIC DOTS — all fixed -->
+    <circle cx="400" cy="60" r="8" fill="#fc6107" opacity="0.85"/>
+    <circle cx="590" cy="350" r="6" fill="#7c5c3e" opacity="0.6"/>
+    <circle cx="210" cy="350" r="6" fill="#7c5c3e" opacity="0.6"/>
+    <circle cx="560" cy="130" r="5" fill="#c9b99a"/>
+    <circle cx="240" cy="130" r="5" fill="#c9b99a"/>
+    <circle cx="150" cy="260" r="3" fill="#c9b99a"/>
+    <circle cx="650" cy="260" r="3" fill="#c9b99a"/>
+    <circle cx="400" cy="470" r="3" fill="#c9b99a"/>
+
+    </svg>
+    </div>
+    </section>
+
+    <section id="about">
+    <img src="https://github.com/Prince0917/snake-game-python/blob/main/SmartSelect_20260329_223155_Gallery%20(2).jpg?raw=true" alt="Prince Pandey" class="about-img">
+    
+    <div class="about-content">
+        <h2>Turning ideas into<br>working products</h2>
+        <p class="about-para">I'm a 2nd-year Computer Engineering student at MMIT Pune, building toward a career in Full Stack Development. I enjoy building real, functional projects from scratch — not just following tutorials.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-box">
+                <h3>4+</h3>
+                <p class="stat-label">Projects Built</p>
+            </div>
+            <div class="stat-box">
+                <h3>2028</h3>
+                <p class="stat-label">BE Graduation</p>
+            </div>
+            <div class="stat-box">
+                <h3>2</h3>
+                <p class="stat-label">Active Internships</p>
+            </div>
+            <div class="stat-box">
+                <h3>2</h3>
+                <p class="stat-label">Deployed Live Apps</p>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
+    <section id="skills">
+    <div class="skills-header">
+      <div>
+        <div class="section-label reveal">◪ Tech Stack</div>
+        <h2 class="section-title reveal" style="margin-bottom:0">What I work with.</h2>
+      </div>
+    </div>
+    <div class="skills-grid reveal">
+      <span class="skill-tag featured">HTML & CSS</span>
+      <span class="skill-tag featured">JavaScript</span>
+      <span class="skill-tag featured">Node.js</span>
+      <span class="skill-tag featured">Express.js</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">MySQL</span>
+      <span class="skill-tag">MongoDB</span>
+      <span class="skill-tag">Mongoose</span>
+      <span class="skill-tag">Git & GitHub</span>
+      <span class="skill-tag">OOP</span>
+    </div>
+  </section>
+
+
+    <section id="projects">
+    <p class="section-label-pr">Projects</p>
+    <h2 class="main-heading">Things I've Built.</h2>
+    <div class="projects-container">
+        <div class="project-grid">
+        <h2>Smart Attendance System</h2>
+        <p>A geofencing-based attendance system to reduce fake attendance. Teachers generate time-limited codes; students can only mark attendance if physically within the set radius.</p>
+         <p class="project-type">- Full Stack</p>
+        <a href="https://github.com/Prince0917" target="_blank" class="source-link" >GitHub</a>
+        </div>
+
+    <div class="project-grid">
+        <h2>StockFlow</h2>
+        <p>A retail store management system with product tracking, user authentication, and admin dashboard. Built with a Node.js + Express backend and Using Mongo DB (DBMS mini project).</p>
+         <p class="project-type">- Full Stack, in Progress</p>
+        <a href="https://github.com/Prince0917" target="_blank" class="source-link" >GitHub</a>
+        </div>
+
+    <div class="project-grid">
+        <h2>SafeRoam</h2>
+        <p>A travel safety web app providing real-time weather data, interactive maps, and location-based safety info for travelers. Built as a single-page app and deployed live on Netlify.</p>
+         <p class="project-type">- Front End</p>
+        <a href="https://github.com/Prince0917" target="_blank" class="source-link" >GitHub</a>
+    </div>
+
+    <div class="project-grid">
+        <h2>Snake-Game</h2>
+        <p>A classic Snake game built in Python using Tkinter, designed with a full OOP architecture — separate classes for the snake, food, and scoreboard with event handling and collision detection.</p>
+        <p class="project-type">- Python</p> 
+        <a href="https://github.com/Prince0917" target="_blank" class="source-link" >GitHub</a>
+    </div>
+    </div>
+    </section>
+
+
+  <section id="contact">
+    <p class="contact-label">Lets Connect</p>
+    <h2 class="contact-heading">Lets Work Together</h2>
+    <p class="c-text">Willing to collaborate with anyone with the same mindset</p>
+    <a href="mailto:pandeyprince8309@gmail.com" class="contact-email">pandeyprince8309@gmail.com</a>
+    <div class="contact-links">
+        <a href="https://drive.google.com/uc?export=download&id=1wocwtffMfT82-BjSFcKC2waE-_9aTJf1" target="_blank" class="btn btn-primary">Download Resume</a>
+        <a href="https://github.com/Prince0917" target="_blank" class="btn btn-outline">GitHub</a>
+        <a href="https://www.linkedin.com/in/pr1nc3/" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Prince Pandey. Built with HTML, CSS & JavaScript</p>
+    </footer>
+
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
