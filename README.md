@@ -20,7 +20,6 @@ A personal portfolio website showcasing my projects, skills, and contact informa
 - Contact section with resume download
 
 **Tech Stack:** HTML, CSS, JavaScript  
-**Live Demo:** [Add your deployed link here]  
 **File:** `portfolio/index.html`
 
 ---
@@ -37,7 +36,6 @@ A restaurant landing page for a fictional café called Brume.
 - Footer
 
 **Tech Stack:** HTML, CSS  
-**Live Demo:** [Add your deployed link here]  
 **File:** `landing-page/index.html`
 
 ---
